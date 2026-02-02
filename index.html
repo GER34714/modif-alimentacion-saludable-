@@ -63,24 +63,31 @@
       background-attachment: fixed;
 
       overflow-x:hidden;
+
+      /* ✅ Overlay fix stacking */
+      position: relative;
+      isolation: isolate;
     }
 
-    /* ✅ OVERLAY NUEVO (imagen) */
-    body{
-      position: relative;
-    }
+    /* ✅ OVERLAY NUEVO (imagen) - ahora se ve */
     body::before{
       content:"";
       position: fixed;
       inset: 0;
+
       background: url('https://iili.io/fZ8twts.md.jpg') center/cover no-repeat;
-      opacity: .22;
-      filter: saturate(1.08) contrast(1.04);
-      mix-blend-mode: soft-light;
+      background-attachment: fixed;
+
+      opacity: .55;
+      mix-blend-mode: normal;
+      filter: saturate(1.12) contrast(1.08);
+
       pointer-events: none;
       z-index: 0;
     }
-    body > *{
+
+    /* el contenido siempre arriba del overlay */
+    header, main, footer{
       position: relative;
       z-index: 1;
     }
